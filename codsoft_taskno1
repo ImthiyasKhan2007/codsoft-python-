@@ -1,0 +1,44 @@
+tasks = []
+
+def show_menu():
+    print("\n1. Add Task")
+    print("2. View Tasks")
+    print("3. Mark Task as Done")
+    print("4. Delete Task")
+    print("5. Exit")
+
+def add_task():
+    task = input("Enter your task: ")
+    tasks.append({"task": task, "status": "Pending"})
+
+def view_tasks():
+    for i, t in enumerate(tasks):
+        print(f"{i+1}. {t['task']} - {t['status']}")
+
+def mark_done():
+    view_tasks()
+    index = int(input("Enter task number to mark done: ")) - 1
+    if 0 <= index < len(tasks):
+        tasks[index]["status"] = "Done"
+
+def delete_task():
+    view_tasks()
+    index = int(input("Enter task number to delete: ")) - 1
+    if 0 <= index < len(tasks):
+        tasks.pop(index)
+
+while True:
+    show_menu()
+    choice = input("Choose: ")
+    if choice == '1':
+        add_task()
+    elif choice == '2':
+        view_tasks()
+    elif choice == '3':
+        mark_done()
+    elif choice == '4':
+        delete_task()
+    elif choice == '5':
+        break
+    else:
+        print("Invalid choice.")
